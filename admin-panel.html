@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .section { margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+
+    <div class="section">
+        <h2>User Messages</h2>
+        <ul id="admin-messages"></ul>
+    </div>
+
+    <div class="section">
+        <h2>Washing Machine Status</h2>
+        <ul id="washing-status"></ul>
+    </div>
+
+    <div class="section">
+        <h2>Add Message (local only)</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="text" id="message" placeholder="Message">
+        <button onclick="addMessage()">Add Message</button>
+    </div>
+
+    <script>
+        function loadMessages() {
+            fetch('data/messages.json')
+                .then(res => res.json())
+                .then(data => {
+                    const ul = document.getElementById('admin-messages');
+                    ul.innerHTML = '';
+                    data.forEach(m => {
+                        const li = document.createElement('li');
+                        li.textContent = m.username + ": " + m.message;
+                        ul.appendChild(li);
+                    });
+                });
+        }
+
+        function loadWashingStatus() {
+            fetch('data/washing.json')
+                .then(res => res.json())
+                .then(data => {
+                    const ul = document.getElementById('washing-status');
+                    ul.innerHTML = '';
+                    data.forEach(m => {
+                        const li = document.createElement('li');
+                        li.textContent = "Machine " + m.id + " is " + m.status;
+                        ul.appendChild(li);
+                    });
+                });
+        }
+
+        function addMessage() {
+            const user = document.getElementById('username').value;
+            const msg = document.getElementById('message').value;
+            if (user && msg) {
+                const li = document.createElement('li');
+                li.textContent = user + ": " + msg + " (not saved)";
+                document.getElementById('admin-messages').appendChild(li);
+                document.getElementById('username').value = '';
+                document.getElementById('message').value = '';
+            }
+        }
+
+        loadMessages();
+        loadWashingStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+.section-title {
+  margin-left: 5px;
+  margin-top: 20px;
+}
+
+.tel-link {
+  color: darkblue;
+  text-decoration: none;
+}
+
+.tel-link:hover {
+  text-decoration: underline;
+  color: navy;
+}
+
+.img-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.contact-image {
+  width: 250px;
+  height: 300px;
+}
+
+figcaption {
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+}
+

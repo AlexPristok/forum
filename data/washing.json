@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "status": "free"
+  },
+  {
+    "id": 2,
+    "status": "in use"
+  },
+  {
+    "id": 3,
+    "status": "free"
+  }
+]

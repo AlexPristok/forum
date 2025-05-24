@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <h1>Welcome to the Dorm Dashboard</h1>
+    <div id="messages-container">
+        <h2>Messages</h2>
+        <ul id="messages-list"></ul>
+    </div>
+
+    <script>
+        fetch('data/messages.json')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('messages-list');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item.username + ": " + item.message;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
